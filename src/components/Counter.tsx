@@ -10,7 +10,6 @@ type CounterType = {
 export const Counter = (props: CounterType) => {
 
     const [disabledReset, setDisabledReset] = useState<boolean>(true);
-    const [disabledIncrease, setDisabledIncrease] = useState<boolean>(false);
 
 
     const increaseCounterHandler = () =>{
@@ -21,8 +20,6 @@ export const Counter = (props: CounterType) => {
     const resetCounterHandler = () =>{
         props.resetCounter()
         setDisabledReset(true)
-        setDisabledIncrease(false)
-
     }
 
     return (
@@ -36,7 +33,8 @@ export const Counter = (props: CounterType) => {
                     callback={increaseCounterHandler}
                     isDisabled={props.counter > 4}
                 />
-                <Button title={'reset'}
+                <Button
+                        title={'reset'}
                         callback={resetCounterHandler}
                         isDisabled={disabledReset}
                 />
