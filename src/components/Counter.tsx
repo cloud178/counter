@@ -30,7 +30,7 @@ export const Counter = (props: CounterType) => {
             <div className={props.counter > 4 ? "max-counter-color value": "value"}>
                 {props.counter}
             </div>
-            <div className={'flex-wrapper'}>
+            <div className={'btn-wrapper'}>
                 <Button
                     title={'inc'}
                     callback={increaseCounterHandler}

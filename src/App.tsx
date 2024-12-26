@@ -8,7 +8,9 @@ function App() {
     const [counter, setCounter] = React.useState(0);
 
     const increaseCounter = () => {
-        setCounter(counter + 1);
+        if (counter <= 5) {
+            setCounter(counter + 1);
+        }
     }
 
     const resetCounter = () => {
