@@ -8,9 +8,11 @@ function App() {
     const maxCounterValue = 5
     const [counter, setCounter] = useState<number>(0);
 
-    const increaseCounter = () => {
+    const increaseCounter = (setDisabledInc: (value: boolean) => void) => {
         if (counter < maxCounterValue) {
             setCounter(counter + 1);
+        } else {
+            setDisabledInc(true);
         }
     }
 

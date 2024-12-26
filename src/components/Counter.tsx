@@ -3,7 +3,7 @@ import {Button} from "./Button";
 
 type CounterType = {
     counter: number
-    increaseCounter: () => void
+    increaseCounter: (setDisabledInc: (value: boolean) => void) => void
     resetCounter: () => void
     maxCounterValue: number
 }
@@ -11,17 +11,18 @@ type CounterType = {
 export const Counter = (props: CounterType) => {
 
     const [disabledReset, setDisabledReset] = useState<boolean>(true);
-    // const [disabledInc, setDisabledInc] = useState<boolean>(false);
+    const [disabledInc, setDisabledInc] = useState<boolean>(false);
 
 
     const increaseCounterHandler = () => {
-        props.increaseCounter()
+        props.increaseCounter(setDisabledInc)
         setDisabledReset(false)
     }
 
     const resetCounterHandler = () => {
         props.resetCounter()
         setDisabledReset(true)
+        setDisabledInc(false)
     }
 
     return (
@@ -34,7 +35,8 @@ export const Counter = (props: CounterType) => {
                     className={'btn'}
                     title={'inc'}
                     callback={increaseCounterHandler}
-                    isDisabled={props.counter >= props.maxCounterValue}
+                    // isDisabled={props.counter >= props.maxCounterValue}
+                    isDisabled={disabledInc}
                 />
                 <Button
                     className={'btn'}
