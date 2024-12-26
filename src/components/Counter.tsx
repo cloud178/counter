@@ -5,11 +5,13 @@ type CounterType = {
     counter: number
     increaseCounter: () => void
     resetCounter: () => void
+    maxCounterValue: number
 }
 
 export const Counter = (props: CounterType) => {
 
     const [disabledReset, setDisabledReset] = useState<boolean>(true);
+    // const [disabledInc, setDisabledInc] = useState<boolean>(false);
 
 
     const increaseCounterHandler = () => {
@@ -24,16 +26,18 @@ export const Counter = (props: CounterType) => {
 
     return (
         <div className="counter">
-            <div className={props.counter > 4 ? "max-counter-color value" : "value"}>
+            <div className={props.counter >= props.maxCounterValue ? "max-counter-color value" : "value"}>
                 {props.counter}
             </div>
             <div className={'btn-wrapper'}>
                 <Button
+                    className={'btn'}
                     title={'inc'}
                     callback={increaseCounterHandler}
-                    isDisabled={props.counter > 4}
+                    isDisabled={props.counter >= props.maxCounterValue}
                 />
                 <Button
+                    className={'btn'}
                     title={'reset'}
                     callback={resetCounterHandler}
                     isDisabled={disabledReset}

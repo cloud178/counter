@@ -5,10 +5,11 @@ import {Counter} from "./components/Counter";
 
 function App() {
 
+    const maxCounterValue = 5
     const [counter, setCounter] = useState<number>(0);
 
     const increaseCounter = () => {
-        if (counter <= 5) {
+        if (counter < maxCounterValue) {
             setCounter(counter + 1);
         }
     }
@@ -17,12 +18,14 @@ function App() {
         setCounter(0);
     }
 
+
     return (
         <div className="App">
             <Counter
                 counter={counter}
                 increaseCounter={increaseCounter}
                 resetCounter={resetCounter}
+                maxCounterValue={maxCounterValue}
             />
         </div>
     );

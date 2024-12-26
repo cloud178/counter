@@ -4,9 +4,10 @@ type ButtonType = {
     title: string
     isDisabled?: boolean
     callback?: () => void
+    className?: string
 }
 
-export const Button = ({title, callback, isDisabled}: ButtonType) => {
+export const Button = ({title, callback, isDisabled, className}: ButtonType) => {
     const onClickButtonHandler = () => {
         if (callback) {
             callback()
@@ -15,7 +16,7 @@ export const Button = ({title, callback, isDisabled}: ButtonType) => {
 
     return (
         <button
-            className={'btn'}
+            className={className}
             onClick={onClickButtonHandler}
             disabled={isDisabled}
         >{title}</button>
