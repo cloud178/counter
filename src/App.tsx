@@ -1,18 +1,16 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {Counter} from "./components/Counter";
 
 function App() {
 
     const maxCounterValue = 5
+    const minCounterValue = 0
     const [counter, setCounter] = useState<number>(0);
 
-    const increaseCounter = (setDisabledInc: (value: boolean) => void) => {
+    const increaseCounter = () => {
         if (counter < maxCounterValue) {
             setCounter(counter + 1);
-        } else {
-            setDisabledInc(true);
         }
     }
 
@@ -28,6 +26,7 @@ function App() {
                 increaseCounter={increaseCounter}
                 resetCounter={resetCounter}
                 maxCounterValue={maxCounterValue}
+                minCounterValue={minCounterValue}
             />
         </div>
     );
