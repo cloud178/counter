@@ -4,8 +4,8 @@ import './App.css';
 import {Counter} from "./components/Counter";
 
 function App() {
-    //BLL
-    const [counter, setCounter] = React.useState(0);
+
+    const [counter, setCounter] = useState<number>(0);
 
     const increaseCounter = () => {
         if (counter <= 5) {
