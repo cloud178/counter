@@ -1,13 +1,13 @@
 .App {
     text-align: center;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    align-items: center;
-    font-weight: bold;
-    color: #242838;
-    font-size: 50px;
-    background-color: #242838;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*height: 100vh;*/
+    /*align-items: center;*/
+    /*font-weight: bold;*/
+    /*color: #242838;*/
+    /*font-size: 50px;*/
+    /*background-color: #242838;*/
 }
 
 .counter {
