@@ -44,21 +44,36 @@ export const SetValueCounter = (props: SetValueCounterType) => {
 
     return (
         <div className={'counter btn-wrapper set-value'}>
-            <label>{'max value: '}
+            <label><span>max value: </span>
                 <input
                     type="number"
-                    className={`input ${maxValue < 1 || minValue >= maxValue ? 'incorrect-input-value' : ''}`}
+                    className={`input ${
+                        maxValue < 1 || minValue >= maxValue
+                            ? 'incorrect-input-value'
+                            : ''
+                    }`}
                     value={maxValue}
                     onChange={MaxValueHandler}
                 /></label>
-            <label>{'start value: '}
+            <label><span>start value: </span>
                 <input
                     type="number"
-                    className={`input ${minValue < 0 || minValue >= maxValue ? 'incorrect-input-value' : ''}`}
+                    className={`input ${
+                        minValue < 0 || minValue >= maxValue
+                            ? 'incorrect-input-value'
+                            : ''
+                    }`}
                     value={minValue}
                     onChange={MinValueHandler}
                 /></label>
-            <Button title="set" callback={setValueHandler} isDisabled={minValue < 0 || minValue >= maxValue || btnSetDisabled}/>
+            <Button
+                title="set"
+                callback={setValueHandler}
+                isDisabled={
+                    minValue < 0
+                    || minValue >= maxValue
+                    || btnSetDisabled
+                }/>
         </div>
     )
 }
