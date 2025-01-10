@@ -35,13 +35,11 @@ export const Counter = (props: CounterType) => {
             </div>
             <div className={'btn-wrapper'}>
                 <Button
-                    className={'btn'}
                     title={'inc'}
                     callback={increaseCounterHandler}
                     isDisabled={counter >= maxCounterValue}
                 />
                 <Button
-                    className={'btn'}
                     title={'reset'}
                     callback={resetCounterHandler}
                     isDisabled={counter === minCounterValue}
