@@ -5,20 +5,27 @@ type CounterType = {
     counter: number
     increaseCounter: () => void
     resetCounter: () => void
-    maxCounterValue: number
-    minCounterValue: number
+    maxValue: number
+    minValue: number
+    textOrCounter: boolean
 }
 
 export const Counter = (props: CounterType) => {
 
     const {
         counter,
-        maxCounterValue,
-        minCounterValue,
+        maxValue,
         increaseCounter,
         resetCounter,
+        minValue,
+        textOrCounter
     } = props
 
+    let maxVaLueFromLocalStorage = 5;
+    const maxVaLueFromLocalStorageString = localStorage.getItem('maxCounterValue')
+    if (maxVaLueFromLocalStorageString) {
+        maxVaLueFromLocalStorage = JSON.parse(maxVaLueFromLocalStorageString)
+    }
 
     const increaseCounterHandler = () => {
         increaseCounter()
@@ -28,21 +35,22 @@ export const Counter = (props: CounterType) => {
         resetCounter()
     }
 
+
     return (
         <div className="counter">
-            <div className={counter >= maxCounterValue ? "max-counter-color value" : "value"}>
-                {counter}
+            <div className={counter >= maxVaLueFromLocalStorage ? "max-counter-color-or-incorrect-value value" : "value"}>
+                {maxValue <= minValue || minValue < 0 || maxValue < 1 ? <span className={'max-counter-color-or-incorrect-value'}>Incorrect value!</span> : textOrCounter ? "enter values and press 'set'" : counter }
             </div>
             <div className={'btn-wrapper'}>
                 <Button
                     title={'inc'}
                     callback={increaseCounterHandler}
-                    isDisabled={counter >= maxCounterValue}
+                    isDisabled={counter >= maxVaLueFromLocalStorage || minValue < 0 || minValue >= maxValue || textOrCounter}
                 />
                 <Button
                     title={'reset'}
                     callback={resetCounterHandler}
-                    isDisabled={counter === minCounterValue}
+                    isDisabled={counter === minValue || minValue < 0 || minValue >= maxValue || textOrCounter}
                 />
             </div>
         </div>

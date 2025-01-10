@@ -7,7 +7,7 @@
     align-items: center;
     font-weight: bold;
     color: #242838;
-    font-size: 50px;
+    font-size: 40px;
     background-color: #242838;
 }
 
@@ -23,7 +23,7 @@
     gap: 10px;
 }
 
-.max-counter-color {
+.max-counter-color-or-incorrect-value {
     color: red;
 }
 
@@ -76,4 +76,10 @@
     border-radius: 4px;
     text-align: center;
     font-weight: bold;
+}
+
+.incorrect-input-value {
+    border: 2px solid red;
+    background-color: #ff8484;
+    outline: none;
 }
