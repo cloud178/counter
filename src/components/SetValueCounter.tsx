@@ -8,6 +8,8 @@ type SetValueCounterType = {
     setMinValueHandler: (value: string) => void
     setCounterWithStartValue: (value: number) => void
     changeTextOrCounterMessage: (value: boolean) => void
+    counterMenu: boolean
+    setCounterMenu: (value: boolean) => void
 }
 
 
@@ -18,7 +20,8 @@ export const SetValueCounter = (props: SetValueCounterType) => {
         setMaxValueHandler,
         setMinValueHandler,
         setCounterWithStartValue,
-        changeTextOrCounterMessage
+        changeTextOrCounterMessage,
+        ...restProps
     } = props
 
     const [btnSetDisabled, setBtnSetDisabled] = useState<boolean>(true)
@@ -40,6 +43,7 @@ export const SetValueCounter = (props: SetValueCounterType) => {
         localStorage.setItem('minCounterValue', JSON.stringify(minValue))
         setCounterWithStartValue(minValue)
         changeTextOrCounterMessage(false)
+        restProps.setCounterMenu(!restProps.counterMenu)
     }
 
     return (

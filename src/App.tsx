@@ -9,6 +9,7 @@ function App() {
     const [maxValue, setMaxValue] = useState<number>(5);
     const [minValue, setMinValue] = useState<number>(0);
     const [textOrCounter, setTextOrCounter] = useState<boolean>(false);
+    const [counterMenu, setCounterMenu] = useState<boolean>(false)
 
     useEffect(() => {
         const maxCounterValue = localStorage.getItem('maxCounterValue')
@@ -50,22 +51,29 @@ function App() {
 
     return (
         <div className="App">
-            <SetValueCounter
-                maxValue={maxValue}
-                minValue={minValue}
-                setMaxValueHandler={setMaxValueHandler}
-                setMinValueHandler={setMinValueHandler}
-                setCounterWithStartValue={setCounterWithStartValue}
-                changeTextOrCounterMessage={changeTextOrCounterMessage}
-            />
-            <Counter
-                counter={counter}
-                increaseCounter={increaseCounter}
-                resetCounter={resetCounter}
-                minValue={minValue}
-                maxValue={maxValue}
-                textOrCounter={textOrCounter}
-            />
+            {
+                counterMenu
+                ? <SetValueCounter
+                        maxValue={maxValue}
+                        minValue={minValue}
+                        setMaxValueHandler={setMaxValueHandler}
+                        setMinValueHandler={setMinValueHandler}
+                        setCounterWithStartValue={setCounterWithStartValue}
+                        changeTextOrCounterMessage={changeTextOrCounterMessage}
+                        counterMenu={counterMenu}
+                        setCounterMenu={setCounterMenu}
+                    />
+                : <Counter
+                        counter={counter}
+                        increaseCounter={increaseCounter}
+                        resetCounter={resetCounter}
+                        minValue={minValue}
+                        maxValue={maxValue}
+                        textOrCounter={textOrCounter}
+                        counterMenu={counterMenu}
+                        setCounterMenu={setCounterMenu}
+                    />
+            }
         </div>
     );
 }

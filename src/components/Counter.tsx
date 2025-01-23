@@ -8,6 +8,8 @@ type CounterType = {
     maxValue: number
     minValue: number
     textOrCounter: boolean
+    counterMenu: boolean
+    setCounterMenu: (value: boolean) => void
 }
 
 export const Counter = (props: CounterType) => {
@@ -19,6 +21,7 @@ export const Counter = (props: CounterType) => {
         textOrCounter,
         increaseCounter,
         resetCounter,
+        ...restProps
     } = props
 
     let maxVaLueFromLocalStorage = maxValue;
@@ -33,6 +36,10 @@ export const Counter = (props: CounterType) => {
 
     const resetCounterHandler = () => {
         resetCounter()
+    }
+
+    const togleCounterMenuHandler = () => {
+        restProps.setCounterMenu(!restProps.counterMenu)
     }
 
 
@@ -68,6 +75,10 @@ export const Counter = (props: CounterType) => {
                         || minValue >= maxValue
                         || textOrCounter
                     }
+                />
+                <Button
+                    title={'set'}
+                    callback={togleCounterMenuHandler}
                 />
             </div>
         </div>
