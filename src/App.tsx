@@ -2,10 +2,16 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter";
 import {SetValueCounter} from './components/SetValueCounter';
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootState} from "./store";
+import {incrementCounterAC, returnDefaultCounterAC} from "./features/model/counter-reducer";
 
 function App() {
+    const dispatch = useDispatch();
+    const counter = useSelector<AppRootState, number>( state => state.counter );
 
-    const [counter, setCounter] = useState<number>(0);
+
+    // const [counter, setCounter] = useState<number>(0);
     const [maxValue, setMaxValue] = useState<number>(5);
     const [minValue, setMinValue] = useState<number>(0);
     const [textOrCounter, setTextOrCounter] = useState<boolean>(false);
@@ -18,7 +24,8 @@ function App() {
         }
         if (minCounterValue) {
             setMinValue(JSON.parse(minCounterValue))
-            setCounter(JSON.parse(minCounterValue))
+            // setCounter(JSON.parse(minCounterValue))
+            dispatch(returnDefaultCounterAC(JSON.parse(minCounterValue)))
         }
     }, [])
 
@@ -31,17 +38,22 @@ function App() {
     }
 
     const setCounterWithStartValue = (value: number) => {
-        setCounter(value)
+        // setCounter(value)
+        dispatch(returnDefaultCounterAC(value))
     }
 
     const increaseCounter = () => {
         if (counter < maxValue) {
-            setCounter(counter + 1);
+            // setCounter(counter + 1);
+            dispatch(incrementCounterAC(counter))
+
         }
     }
 
     const resetCounter = () => {
-        setCounter(minValue);
+        // setCounter(minValue);
+        dispatch(returnDefaultCounterAC(minValue))
+
     }
 
     const changeTextOrCounterMessage = (value: boolean) => {
