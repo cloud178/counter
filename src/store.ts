@@ -1,5 +1,6 @@
-import {combineReducers, createStore} from "redux";
+import {combineReducers} from "redux";
 import {counterReducer} from "./features/model/counter-reducer";
+import {configureStore} from "@reduxjs/toolkit";
 
 const rootReducer = combineReducers({
     counter: counterReducer,
@@ -9,9 +10,13 @@ const rootReducer = combineReducers({
 //     todolists: TodolistType[]
 //     tasks: TaskType
 // }
-export type AppRootState = ReturnType<typeof rootReducer>
 
-export const store = createStore(rootReducer)
+export const store = configureStore({
+    reducer: rootReducer,
+})
+
+export type AppRootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 
 // @ts-ignore
 window.store = store // хотим уметь пользоваться стором из консоли прям в браузере

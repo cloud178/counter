@@ -5,13 +5,17 @@ import {SetValueCounter} from './components/SetValueCounter';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "./store";
 import {incrementCounterAC, returnDefaultCounterAC} from "./features/model/counter-reducer";
+import {selectCounter} from "./features/model/counter-selector";
+import {useAppSelector} from "./common/hooks/useAppSelector";
+import {useAppDispatch} from "./common/hooks/useAppDispatch";
 
 function App() {
-    const dispatch = useDispatch();
-    const counter = useSelector<AppRootState, number>( state => state.counter );
-
-
     // const [counter, setCounter] = useState<number>(0);
+    // const dispatch = useDispatch();
+    // const counter = useSelector<AppRootState, number>( state => state.counter );
+    const counter = useAppSelector(selectCounter);
+    const dispatch = useAppDispatch()
+
     const [maxValue, setMaxValue] = useState<number>(5);
     const [minValue, setMinValue] = useState<number>(0);
     const [textOrCounter, setTextOrCounter] = useState<boolean>(false);
@@ -39,20 +43,20 @@ function App() {
 
     const setCounterWithStartValue = (value: number) => {
         // setCounter(value)
-        dispatch(returnDefaultCounterAC(value))
+        dispatch(returnDefaultCounterAC({counter: value}))
     }
 
     const increaseCounter = () => {
         if (counter < maxValue) {
             // setCounter(counter + 1);
-            dispatch(incrementCounterAC(counter))
+            dispatch(incrementCounterAC({counter}))
 
         }
     }
 
     const resetCounter = () => {
         // setCounter(minValue);
-        dispatch(returnDefaultCounterAC(minValue))
+        dispatch(returnDefaultCounterAC({counter: minValue}))
 
     }
 
