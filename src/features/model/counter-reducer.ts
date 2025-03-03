@@ -35,33 +35,34 @@ const initialState: number = 0
 //     }
 // }
 
+// export type incrementCounterActionType = ReturnType<typeof incrementCounterAC>
+// export type returnDefaultCounterActionType = ReturnType<typeof returnDefaultCounterAC>
+// type ActionType = incrementCounterActionType | returnDefaultCounterActionType
 export const incrementCounterAC = createAction<{ counter: number }>('counter/increment')
 export const returnDefaultCounterAC = createAction<{ counter: number }>('counter/returnDefault')
-export type incrementCounterActionType = ReturnType<typeof incrementCounterAC>
-export type returnDefaultCounterActionType = ReturnType<typeof returnDefaultCounterAC>
-type ActionType = incrementCounterActionType | returnDefaultCounterActionType
 
-// export const counterReducer = createReducer(initialState, builder => {
-//     builder
-//         .addCase(incrementCounterAC, (state, action) => {
-//             return action.payload.counter + 1
-//         })
-//         .addCase(returnDefaultCounterAC, (state, action) => {
-//             return action.payload.counter
-//         })
-// })
+export const counterReducer = createReducer(initialState, builder => {
+    builder
+        .addCase(incrementCounterAC, (state, action) => {
+            return state + 1
+        })
+        .addCase(returnDefaultCounterAC, (state, action) => {
+            state = action.payload.counter || state
+            return state
+        })
+})
 
-export const counterReducer = (counter: number = initialState, action: ActionType) => {
-    switch (action.type) {
-        case 'increment': {
-            let counterCopy = action.payload.counter
-            return ++counterCopy
-        }
-        case 'returnDefault': {
-            let counterCopy = action.payload.counter
-            return counterCopy
-        }
-        default: return counter
-    }
-}
+// export const counterReducer = (counter: number = initialState, action: ActionType) => {
+//     switch (action.type) {
+//         case 'increment': {
+//             let counterCopy = action.payload.counter
+//             return ++counterCopy
+//         }
+//         case 'returnDefault': {
+//             let counterCopy = action.payload.counter
+//             return counterCopy
+//         }
+//         default: return counter
+//     }
+// }
 

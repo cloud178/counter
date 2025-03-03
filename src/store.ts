@@ -6,11 +6,6 @@ const rootReducer = combineReducers({
     counter: counterReducer,
 })
 
-// type AppRootState = {
-//     todolists: TodolistType[]
-//     tasks: TaskType
-// }
-
 export const store = configureStore({
     reducer: rootReducer,
 })

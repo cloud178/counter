@@ -29,7 +29,7 @@ function App() {
         if (minCounterValue) {
             setMinValue(JSON.parse(minCounterValue))
             // setCounter(JSON.parse(minCounterValue))
-            dispatch(returnDefaultCounterAC(JSON.parse(minCounterValue)))
+            dispatch(returnDefaultCounterAC({counter: JSON.parse(minCounterValue)}))
         }
     }, [])
 
